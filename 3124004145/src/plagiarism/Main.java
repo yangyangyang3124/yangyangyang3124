@@ -12,10 +12,13 @@ package plagiarism;
 public final class Main {
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         try {
             CliArguments arguments = CliArguments.parse(args);
             PlagiarismChecker checker = new PlagiarismChecker(new CosineSimilarityCalculator());
             checker.check(arguments.originalPath(), arguments.plagiarizedPath(), arguments.answerPath());
+            long elapsedMs = (System.nanoTime() - startTime) / 1_000_000;
+            System.out.println("Elapsed time: " + elapsedMs + " ms");
         } catch (PlagiarismException e) {
             System.err.println("错误：" + e.getMessage());
             printUsage();
