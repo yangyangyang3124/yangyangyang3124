@@ -1,0 +1,6 @@
+build/
+*.class
+main.jar
+sample/ans*.txt
+.idea/
+*.iml
